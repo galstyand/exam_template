@@ -1,8 +1,7 @@
 from .grid import Grid
 from .player import Player
 from . import pickups
-
-
+from .print_status import print_status
 
 player = Player(17, 5)
 score = 0
@@ -14,19 +13,10 @@ g.make_walls()
 g.make_walls_inside_grid()
 pickups.randomize(g)
 
-
-# TODO: flytta denna till en annan fil
-def print_status(game_grid):
-    """Visa spelvärlden och antal poäng."""
-    print("--------------------------------------")
-    print(f"You have {score} points.")
-    print(game_grid)
-
-
 command = "a"
 # Loopa tills användaren trycker Q eller X.
 while not command.casefold() in ["q", "x"]:
-    print_status(g)
+    print_status(g, score)
 
     command = input("Use WASD to move, Q/X to quit. ")
     command = command.casefold()[:1]
